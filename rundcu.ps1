@@ -111,7 +111,7 @@ else
 			New-ItemProperty -path "registry::hklm\software\policies\microsoft\Internet Explorer\Main" -Name DisableFirstRunCustomize -PropertyType dword -Value 2
 			
 			Write-Host "Dell command update not installed"
-			Invoke-WebRequest -Uri "https://dl.dell.com/FOLDER06095696M/1/Dell-Command-Update-Win-32_PH01C_WIN_3.1.1_A00.EXE" -OutFile "$env:temp\DCU.exe" -UseBasicParsing -Verbose
+			Invoke-WebRequest -Uri "https://dl.dell.com/FOLDER06228963M/4/Dell-Command-Update-Application_68GJ6_WIN_3.1.2_A00.EXE" -OutFile "$env:temp\DCU.exe" -UseBasicParsing -Verbose
 			start-process -FilePath "$env:temp\DCU.exe" -ArgumentList '/s' -Wait
 			Start-Sleep -Seconds 5
 		}
@@ -123,7 +123,7 @@ else
 		$a = "/configure -scheduleWeekly=Mon,11:45 -updateSeverity=recommended,critical -updatetype=driver,bios -updateDeviceCategory=network,storage,audio,video,input -scheduleAction=DownloadInstallAndNotify -autoSuspendBitLocker=enable -outputLog=$setlog"
 		$set = Start-Process -FilePath $EXE -ArgumentList $a -WindowStyle Hidden -Wait -Passthru #| Out-Null
 		$set.WaitForExit()
-	<#	
+		
 		Write-Host "******************Scanning for updates*********************"
 		$b = "/scan -outputLog=$scanlog"
 		$scan = Start-Process -FilePath $EXE -ArgumentList $b -WindowStyle Hidden -Wait -PassThru
@@ -135,7 +135,7 @@ else
 		$apply.WaitForExit()
 		Copy-Item $dclogfolder\*.log -Destination $env:TEMP -Force -Recurse
 		Remove-Item $dclogfolder -Force -Recurse
-	#>	
+		
 	}
 	else
 	{
