@@ -104,7 +104,7 @@ else
 	$setlog = $dclogfolder + '\' + 'setdcu.log'
 	if ((Get-CimInstance win32_bios).Manufacturer -match 'Dell')
 	{
-		if (($EXE -eq $null) -or ((Get-Item $EXE).VersionInfo.FileVersion -ne '3.1.1.44'))
+		if (($EXE -eq $null) -or ((Get-Item $EXE).VersionInfo.FileVersion -ne '3.1.2.20'))
 		{
 			###Code to download andinstallstuff starts here
 			New-Item -path "registry::hklm\software\policies\microsoft\Internet Explorer\Main" -Force
